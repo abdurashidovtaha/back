@@ -1,0 +1,27 @@
+@url = http://localhost:9999
+
+###
+GET {{url}}/api/messages
+
+###
+POST {{url}}/api/messages
+Content-Type: application/json
+
+{
+    "id": "test",
+    "content": "first message",
+    "created": {{$timestamp}},
+    "status": "MESSAGE_STATUS_PENDING"
+}
+
+###
+
+POST {{url}}/api/upload
+Content-Type: multipart/form-data; boundary=----WebkitFormBoundary
+
+----WebkitFormBoundary
+Content-Disposition: form-data; name="media"; filename="My pic.png"
+Content-Type: image/png
+
+< ./screenshot.png
+----WebkitFormBoundary--
